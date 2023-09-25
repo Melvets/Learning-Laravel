@@ -22,6 +22,11 @@
 
     <a href="/pegawai/create">+ Tambah Data Pegawai</a>
 
+    <form action="/pegawai" method="GET">
+        <input type="text" name="search">
+        <button type="submit">Cari</button>
+    </form>
+
     <div class="tabel">
         <table class="table table-striped table-lg table-bordered table-hover"> 
             <tr>
@@ -34,20 +39,29 @@
             </tr>
 
             @php
-                $no = 1;    
+                $no = $datapegawai->firstItem();    
             @endphp
             @foreach ($datapegawai as $data)
             <tr>
                 <td>{{ $no++ }}</td>
-                <td>{{ $data->nama }}</td>
+                <td><a href="/pegawai/{{ $data->id }}">{{ $data->nama }}</a></td>
                 <td>{{ $data->jabatan }}</td>
                 <td>{{ $data->tgl_lahir }}</td>
                 <td>{{ $data->alamat }}</td>
-                <td><a href="/pegawai/{{ $data->id }}/edit">Edit</a> | <a href="#">Hapus</a></td>
+                <td class="d-flex">
+                    <a class="btn btn-primary mx-1" href="/pegawai/{{ $data->id }}/edit">Edit</a>
+                    <form action="/pegawai/{{ $data->id }}" method="POST"> 
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger mx-1" type="submit" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
 
         </table>
+
+        {{ $datapegawai->links() }}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

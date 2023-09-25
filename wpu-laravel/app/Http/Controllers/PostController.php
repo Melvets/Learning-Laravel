@@ -12,7 +12,7 @@ class PostController extends Controller
             "title" => "Posts",
             // "posts" => Post::all()
             "posts" => Post::latest()->get()
-        ]);
+        ]);     
     }
 
     public function show(Post $post){
