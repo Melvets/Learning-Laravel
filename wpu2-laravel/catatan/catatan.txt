@@ -1,0 +1,20 @@
+PART 1 ========================================================================================
+Laravel
+    1. Definisi
+        Laravel adalah Web Application Framework dengan syntax ekspresif dan elegan. 
+    2. Web Application Framework
+        A. Sebuah 'kerangka' yang didesain untuk mendukung pembangunan aplikasi Web
+        B. Menyediakan standar / cara membangun aplikasi Web
+        C. Bertujuan untuk mengotomasi hal-hal umum yang biasanya dilakukan saat membangun aplikasi Web
+        D. Contohnya: database library, templating engine, session management, authentication, security, dll
+    3. Fitur utama pada Laravel
+        A. MVC
+        B. Templating engine
+        C. Artisan Console
+        D. Eloquent ORM
+        E. Authentication & Authorization
+        F. Testing
+        G. Packaging System
+        H. Multiple File System
+        I. Task Scheduling
+        J. Websocket Programming
