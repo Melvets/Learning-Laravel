@@ -18,3 +18,13 @@ Laravel
         H. Multiple File System
         I. Task Scheduling
         J. Websocket Programming
+
+PART 2 ========================================================================================
+Membuat Project Baru
+    A. Install dengan composer (download dulu)
+
+        composer create-project laravel/laravel:^9.0 <nama project>
+
+    B. Install secara global (tidak perlu download lagi)
+
+        laravel new <nama project>
