@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,53 +31,7 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', function () {
-    $blog_posts = [
-        [    
-            "title" => "Judul Post 1",
-            "slug" => "judul-post-1",
-            "author" => "Author 1",
-            "body" => "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quibusdam maiores, impedit temporibus officia veniam! Perferendis deserunt fugiat sit provident veritatis beatae aut veniam eum? Laboriosam illo maxime labore officia ipsa quaerat maiores impedit ea. Voluptas nostrum molestias beatae necessitatibus ipsa, voluptatum expedita corporis veniam recusandae error laboriosam aliquid suscipit dolorem vero architecto, provident vitae iure assumenda esse. Sequi ex quia, facere minima repudiandae repellat provident earum aut sint, recusandae, maxime unde inventore ut nobis placeat? Atque, magni asperiores ipsa blanditiis unde ipsum recusandae est doloribus id nisi, dicta velit reprehenderit minus harum magnam facilis facere illum at ea! Ipsum."
-        ],
-        [    
-            "title" => "Judul Post 2",
-            "slug" => "judul-post-2",
-            "author" => "Author 2",
-            "body" => "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quibusdam maiores, impedit temporibus officia veniam! Perferendis deserunt fugiat sit provident veritatis beatae aut veniam eum? Laboriosam illo maxime labore officia ipsa quaerat maiores impedit ea. Voluptas nostrum molestias beatae necessitatibus ipsa, voluptatum expedita corporis veniam recusandae error laboriosam aliquid suscipit dolorem vero architecto, provident vitae iure assumenda esse. Sequi ex quia, facere minima repudiandae repellat provident earum aut sint, recusandae, maxime unde inventore ut nobis placeat? Atque, magni asperiores ipsa blanditiis unde ipsum recusandae est doloribus id nisi, dicta velit reprehenderit minus harum magnam facilis facere illum at ea! Ipsum."
-        ]
-    ];
-    return view('v_blog.blog', [
-        'title' => 'Blog',
-        'dataPosts' => $blog_posts
-    ]);
-});
+Route::get('/blog', [PostController::class, 'index']);
 
 // detail blog
-Route::get('blog/{slug}', function($slug) {
-    $blog_posts = [
-        [    
-            "title" => "Judul Post 1",
-            "slug" => "judul-post-1",
-            "author" => "Author 1",
-            "body" => "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quibusdam maiores, impedit temporibus officia veniam! Perferendis deserunt fugiat sit provident veritatis beatae aut veniam eum? Laboriosam illo maxime labore officia ipsa quaerat maiores impedit ea. Voluptas nostrum molestias beatae necessitatibus ipsa, voluptatum expedita corporis veniam recusandae error laboriosam aliquid suscipit dolorem vero architecto, provident vitae iure assumenda esse. Sequi ex quia, facere minima repudiandae repellat provident earum aut sint, recusandae, maxime unde inventore ut nobis placeat? Atque, magni asperiores ipsa blanditiis unde ipsum recusandae est doloribus id nisi, dicta velit reprehenderit minus harum magnam facilis facere illum at ea! Ipsum."
-        ],
-        [    
-            "title" => "Judul Post 2",
-            "slug" => "judul-post-2",
-            "author" => "Author 2",
-            "body" => "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quibusdam maiores, impedit temporibus officia veniam! Perferendis deserunt fugiat sit provident veritatis beatae aut veniam eum? Laboriosam illo maxime labore officia ipsa quaerat maiores impedit ea. Voluptas nostrum molestias beatae necessitatibus ipsa, voluptatum expedita corporis veniam recusandae error laboriosam aliquid suscipit dolorem vero architecto, provident vitae iure assumenda esse. Sequi ex quia, facere minima repudiandae repellat provident earum aut sint, recusandae, maxime unde inventore ut nobis placeat? Atque, magni asperiores ipsa blanditiis unde ipsum recusandae est doloribus id nisi, dicta velit reprehenderit minus harum magnam facilis facere illum at ea! Ipsum."
-        ]
-    ];
-
-    $new_post = [];
-    foreach($blog_posts as $post) {
-        if( $post["slug"] === $slug ) {
-            $new_post = $post;
-        }
-    }
-
-    return view('v_blog.detail', [
-        'title' => 'Detail Post',
-        'post' => $new_post
-    ]);
-});
+Route::get('blog/{slug}', [PostController::class, 'show']);
