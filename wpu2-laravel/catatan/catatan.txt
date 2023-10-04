@@ -28,3 +28,11 @@ Membuat Project Baru
     B. Install secara global (tidak perlu download lagi)
 
         laravel new <nama project>
+
+PART 3 ========================================================================================
+Database, Migration
+
+command 
+- php artisan migrate (up/masuk)
+- php artisan migrate:rollback (down/hapus)
+- php artisan migrate:fresh (migrate dan rollback)
