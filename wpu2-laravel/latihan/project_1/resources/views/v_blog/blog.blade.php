@@ -6,9 +6,8 @@
     @foreach ($dataPosts as $data)
     <div class="card p-3 mb-2">
         <article>
-            <h2> <a href="/blog/{{ $data['slug'] }}">{{ $data['title'] }}</a> </h2>
-            <h5>By: {{ $data['author'] }}</h5>
-            <p>{{ $data['body'] }}</p>
+            <h2> <a href="/blog/{{ $data->slug }}">{{ $data->title }}</a> </h2>
+            <p>{{ $data->excerpt }}</p>
         </article>
     </div>
     @endforeach

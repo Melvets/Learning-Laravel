@@ -36,3 +36,32 @@ command
 - php artisan migrate (up/masuk)
 - php artisan migrate:rollback (down/hapus)
 - php artisan migrate:fresh (migrate dan rollback)
+
+PART 4 ========================================================================================
+Post Model
+
+command tinker (Input)
+- php artisan tinker
+- $<variable> = new <model>
+- $<variable>-><nama table> = '<input>'
+- $<variable>->save()
+
+atau
+
+- php artisan tinker
+- App\Models\<model>::create([
+    '<nama table>' => '<input>',
+    '<nama table>' => '<input>',
+    '<nama table>' => '<input>'
+])
+
+command tinker (update)
+- php artisan tinker
+
+[== khusus id ==]
+- App\Models\<model>::find(<id>)->update(['<nama table>' => '<input>'])
+
+ atau
+
+[== boleh apa saja ==]
+- App\Models\<model>::where('<nama table>', '<isi table>')->update(['<nama table>' => '<input>'])
