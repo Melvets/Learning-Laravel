@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Models\Kategori_model;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,19 @@ Route::get('/blog', [PostController::class, 'index']);
 
 // detail blog
 Route::get('blog/{post:slug}', [PostController::class, 'show']);
+// kategori
+Route::get('/kategori', function() {
+    return view('v_kategori.kategori', [
+        'title' => 'Kategori',
+        'dataKategori' => Kategori_model::all()
+    ]);
+});
+
+Route::get('/kategori/{kategori:slug}', function(Kategori_model $kategori) {
+    return view('v_kategori.detail', [
+        'title' => $kategori->nama,
+        'dataPosts' => $kategori->Posts_model,
+        'kategori' => $kategori->nama
+    ]);
+});
+

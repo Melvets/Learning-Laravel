@@ -65,3 +65,16 @@ command tinker (update)
 
 [== boleh apa saja ==]
 - App\Models\<model>::where('<nama table>', '<isi table>')->update(['<nama table>' => '<input>'])
+
+PART 5 ========================================================================================
+Relationship
+return $this->belongsTo(User::class, 'foreign_key', 'owner_key');
+
+    CARDINALITAS
+    1. One To One (A 1-> B [Has one] | A <-1 B [Belongs to] )
+        Jika table A hanya boleh memiliki satu data di dalam table B (A has one B) dan table B hanya boleh dimiliki oleh data di table A (B Belongs to A).
+
+
+    2. One To Many
+
+    3. Many To Many
