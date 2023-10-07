@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kategori_id');
+            $table->foreignId('user_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('excerpt');

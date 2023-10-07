@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         return view('v_blog.detail', [
             'title' => 'Detail Post',
-            'post' => $post
+            'dataPost' => $post
         ]);
     }
 }

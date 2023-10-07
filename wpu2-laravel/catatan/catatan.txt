@@ -74,7 +74,14 @@ return $this->belongsTo(User::class, 'foreign_key', 'owner_key');
     1. One To One (A 1-> B [Has one] | A <-1 B [Belongs to] )
         Jika table A hanya boleh memiliki satu data di dalam table B (A has one B) dan table B hanya boleh dimiliki oleh data di table A (B Belongs to A).
 
-
-    2. One To Many
+    2. One To Many / Many to One
+        hasMany dan belongsToMany
 
     3. Many To Many
+
+PART 6 ========================================================================================
+Database Seeder
+
+command
+php artisan db:seed
+php artisan migrate:fresh --seed

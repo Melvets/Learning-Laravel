@@ -47,7 +47,7 @@ Route::get('/kategori', function() {
 Route::get('/kategori/{kategori:slug}', function(Kategori_model $kategori) {
     return view('v_kategori.detail', [
         'title' => $kategori->nama,
-        'dataPosts' => $kategori->Posts_model,
+        'dataPosts' => $kategori->Post_model,
         'kategori' => $kategori->nama
     ]);
 });

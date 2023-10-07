@@ -12,7 +12,7 @@ class Kategori_model extends Model
 
     protected $table = "kategori";
 
-    public function Posts_model()
+    public function Post_model()
     {
         return $this->hasMany(Post_model::class, 'kategori_id', 'id');
     }

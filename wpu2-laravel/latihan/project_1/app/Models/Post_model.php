@@ -19,4 +19,9 @@ class Post_model extends Model
     {
         return $this->belongsTo(Kategori_model::class, 'kategori_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
