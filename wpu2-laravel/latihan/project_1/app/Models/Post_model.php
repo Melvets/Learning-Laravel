@@ -20,8 +20,8 @@ class Post_model extends Model
         return $this->belongsTo(Kategori_model::class, 'kategori_id', 'id');
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

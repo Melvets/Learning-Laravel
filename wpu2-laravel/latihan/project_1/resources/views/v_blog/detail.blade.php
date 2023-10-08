@@ -5,7 +5,7 @@
         <article>
             <h2>{{ $dataPost->title }}</h2>
 
-            <p>By. <a href="" class="text-decoration-none">{{ $dataPost->user->name }}</a> in <a href="/kategori/{{ $dataPost->Kategori_model->slug }}" class="text-decoration-none">{{ $dataPost->Kategori_model->nama }}</a> </p>
+            <p>By. <a href="/author/{{ $dataPost->author->username }}" class="text-decoration-none">{{ $dataPost->author->name }}</a> in <a href="/kategori/{{ $dataPost->Kategori_model->slug }}" class="text-decoration-none">{{ $dataPost->Kategori_model->nama }}</a> </p>
             {!! $dataPost->body !!}
             
         </article>

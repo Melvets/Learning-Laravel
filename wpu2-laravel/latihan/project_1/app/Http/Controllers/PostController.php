@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post_model as Post;
+use Database\Factories\Post_modelFactory;
 
 class PostController extends Controller
 {
@@ -11,7 +12,8 @@ class PostController extends Controller
     {
         return view('v_blog.blog', [
             'title' => 'Blog',
-            'dataPosts' => Post::all()
+            'dataPosts' => Post::latest()->get()
+            // 'dataPosts' => Post::all()
         ]);
     }
 

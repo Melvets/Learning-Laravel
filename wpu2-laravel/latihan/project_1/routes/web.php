@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Kategori_model;
@@ -49,6 +49,14 @@ Route::get('/kategori/{kategori:slug}', function(Kategori_model $kategori) {
         'title' => $kategori->nama,
         'dataPosts' => $kategori->Post_model,
         'kategori' => $kategori->nama
+    ]);
+});
+
+// user
+Route::get('/author/{author:username}', function(User $author) {
+    return view('v_user.user', [
+        'title' => 'User Post',
+        'dataPosts' => $author->Post_model,
     ]);
 });
 

@@ -9,7 +9,7 @@
         <article>
             <h2> <a href="/blog/{{ $data->slug }}"  class="text-decoration-none">{{ $data->title }}</a> </h2>
 
-            <p>By. <a href="" class="text-decoration-none">{{ $data->user->name }}</a> in <a href="/kategori/{{ $data->Kategori_model->slug }}" class="text-decoration-none">{{ $data->Kategori_model->nama }}</a> </p>
+            <p>By. <a href="/author/{{ $data->author->username }}" class="text-decoration-none">{{ $data->author->name }}</a> in <a href="/kategori/{{ $data->Kategori_model->slug }}" class="text-decoration-none">{{ $data->Kategori_model->nama }}</a> </p>
 
             <p>{{ $data->excerpt }}</p>
 
