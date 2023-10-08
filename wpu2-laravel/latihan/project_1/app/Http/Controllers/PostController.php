@@ -11,8 +11,8 @@ class PostController extends Controller
     public function index()
     {
         return view('v_blog.blog', [
-            'title' => 'Blog',
-            'dataPosts' => Post::latest()->get()
+            'title' => 'Halaman Blog',
+            'dataPosts' => Post::with(['author', 'Kategori_model'])->latest()->get()
             // 'dataPosts' => Post::all()
         ]);
     }

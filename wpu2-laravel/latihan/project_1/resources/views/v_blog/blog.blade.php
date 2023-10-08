@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1>Halaman Blog</h1>
+    <h1>{!! $title !!}</h1>
 
     @foreach ($dataPosts as $data)
     <div class="card p-3 mb-2">
