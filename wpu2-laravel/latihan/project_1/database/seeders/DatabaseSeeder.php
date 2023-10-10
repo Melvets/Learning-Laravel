@@ -44,18 +44,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Kategori_model::create([
+            'nama' => 'Web Design',
+            'slug' => 'web-design'
+        ]);
+
+        Kategori_model::create([
             'nama' => 'Personal',
             'slug' => 'personal'
         ]);
 
-        // Post_model::create([
-        //     'title' => 'Judul Post 1',
-        //     'kategori_id' => 1,
-        //     'user_id' => 1,
-        //     'slug' => 'judul-post-1',
-        //     'excerpt' => '1Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus accusamus nam atque eveniet in, deleniti commodi tenetur quidem iste, reprehenderit possimus excepturi rem?',
-        //     'body' => '<p>1Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus accusamus nam atque eveniet in, deleniti commodi tenetur quidem iste, reprehenderit possimus excepturi rem? Aliquid provident vel, enim sunt incidunt animi dolore. Facilis, laboriosam deleniti hic, atque eveniet illo adipisci quia voluptate quae rerum tenetur aliquid consectetur enim voluptatum. Provident, cum.</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, adipisci itaque unde mollitia facere veritatis vel maiores quam similique laborum rem ex debitis ullam vitae odit consequuntur libero earum! Ipsum ut nemo sequi, nam amet quo impedit assumenda quasi praesentium quia temporibus debitis eos earum tempora esse eaque placeat quis!</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, explicabo ut assumenda, officiis sequi nihil, et ducimus qui eum quod dolore aliquam distinctio vel ipsum repellat minus esse natus praesentium quas officia fugit tempora in obcaecati. Expedita in facilis unde iusto magni veritatis nesciunt sunt debitis cupiditate nam inventore esse doloribus autem error eum delectus ipsum non, fuga repellendus asperiores nihil adipisci hic optio. Quasi quo dolore in mollitia aut sunt explicabo, beatae molestias veniam quisquam? Tenetur ipsam, voluptatibus commodi rerum quod ratione aperiam doloribus nobis sunt cupiditate. Vitae optio delectus voluptates quae deleniti iusto ipsam voluptas voluptatum in distinctio!</p>'
-        // ]);
+        Post_model::create([
+            'title' => 'Judul Post 1',
+            'kategori_id' => 1,
+            'user_id' => 1,
+            'slug' => 'judul-post-1',
+            'excerpt' => '1Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus accusamus nam atque eveniet in, deleniti commodi tenetur quidem iste, reprehenderit possimus excepturi rem?',
+            'body' => '<p>1Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus accusamus nam atque eveniet in, deleniti commodi tenetur quidem iste, reprehenderit possimus excepturi rem? Aliquid provident vel, enim sunt incidunt animi dolore. Facilis, laboriosam deleniti hic, atque eveniet illo adipisci quia voluptate quae rerum tenetur aliquid consectetur enim voluptatum. Provident, cum.</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, adipisci itaque unde mollitia facere veritatis vel maiores quam similique laborum rem ex debitis ullam vitae odit consequuntur libero earum! Ipsum ut nemo sequi, nam amet quo impedit assumenda quasi praesentium quia temporibus debitis eos earum tempora esse eaque placeat quis!</p> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, explicabo ut assumenda, officiis sequi nihil, et ducimus qui eum quod dolore aliquam distinctio vel ipsum repellat minus esse natus praesentium quas officia fugit tempora in obcaecati. Expedita in facilis unde iusto magni veritatis nesciunt sunt debitis cupiditate nam inventore esse doloribus autem error eum delectus ipsum non, fuga repellendus asperiores nihil adipisci hic optio. Quasi quo dolore in mollitia aut sunt explicabo, beatae molestias veniam quisquam? Tenetur ipsam, voluptatibus commodi rerum quod ratione aperiam doloribus nobis sunt cupiditate. Vitae optio delectus voluptates quae deleniti iusto ipsam voluptas voluptatum in distinctio!</p>'
+        ]);
 
         // Post_model::create([
         //     'title' => 'Judul Post 2',

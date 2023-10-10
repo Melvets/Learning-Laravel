@@ -15,6 +15,8 @@ class Post_model extends Model
     // protected $fillable = ['title', 'excerpt', 'body'];
     protected $guarded = ['id'];
 
+    protected $with = ['author', 'Kategori_model'];
+
     public function Kategori_model()
     {
         return $this->belongsTo(Kategori_model::class, 'kategori_id', 'id');

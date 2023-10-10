@@ -18,13 +18,15 @@ use App\Models\Kategori_model;
 
 Route::get('/', function () {
     return view('v_home.home', [
-        'title' => 'Home'
+        'title' => 'Home',
+        'active' => 'home',
     ]);
 });
 
 Route::get('/about', function () {
     return view('v_about.about', [
         'title' => 'About',
+        'active' => 'about',
         'nama' => 'Camela Devs',
         'alamat' => 'Jalan Kesini',
         'hobi' => 'Memancing keributan',
@@ -40,6 +42,7 @@ Route::get('blog/{post:slug}', [PostController::class, 'show']);
 Route::get('/kategori', function() {
     return view('v_kategori.kategori', [
         'title' => 'Kategori',
+        'active' => 'kategori',
         'dataKategori' => Kategori_model::all()
     ]);
 });
@@ -47,6 +50,7 @@ Route::get('/kategori', function() {
 Route::get('/kategori/{kategori:slug}', function(Kategori_model $kategori) {
     return view('v_blog.blog', [
         'title' => "Postingan dengan kategori: <br> <span class='text-danger'>$kategori->nama</span>",
+        'active' => 'kategori',
         'dataPosts' => $kategori->Post_model->load('Kategori_model', 'author')
     ]);
 });

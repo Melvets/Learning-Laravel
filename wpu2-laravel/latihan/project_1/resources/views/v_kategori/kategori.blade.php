@@ -4,13 +4,36 @@
 
     <h1 class="text-dark">List Kategori</h1>
 
-    @foreach ($dataKategori as $data)
-    <div class="card pt-1 ps-1 m-2">
-        <ul class="list-group">
-            <li>
-                <h5> <a class="text-decoration-none" href="/kategori/{{ $data->slug }}">{{ $data->nama }}</h5> </p>
-            </li>
-        </ul>
+    <div class="container">
+        <div class="row">
+
+            @foreach ( $dataKategori as $data )
+
+            <div class="col-md-4">
+                
+                <a href="/kategori/{{ $data->slug }}">
+                    
+                    <div class="card bg-dark text-white">
+                        <div class="position-absolute px-5 py-1" style="background-color: rgba(0, 0, 0, 0.7)"> 
+                            <h5>{{ $data->nama }}</h5>
+                        </div>
+
+                        <img src="https://source.unsplash.com/400x300?{{ $data->nama }}" class="card-img" alt="{{ $data->nama }}">
+                        
+                        {{-- 
+                        <div class="card-img-overlay p-0">
+                            <h5 class="card-title p-3" style="background-color: rgba(0,0,0,0.7)">{{ $data->nama }}</h5>
+                        </div> --}}
+
+                    </div>
+
+                </a>
+                
+            </div>
+
+            @endforeach
+
+        </div>
     </div>
-    @endforeach
+
 @endsection

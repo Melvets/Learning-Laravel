@@ -12,7 +12,8 @@ class PostController extends Controller
     {
         return view('v_blog.blog', [
             'title' => 'Halaman Blog',
-            'dataPosts' => Post::with(['author', 'Kategori_model'])->latest()->get()
+            'active' => 'blog',
+            'dataPosts' => Post::latest()->get()
             // 'dataPosts' => Post::all()
         ]);
     }
@@ -21,6 +22,7 @@ class PostController extends Controller
     {
         return view('v_blog.detail', [
             'title' => 'Detail Post',
+            'active' => 'blog',
             'dataPost' => $post
         ]);
     }
