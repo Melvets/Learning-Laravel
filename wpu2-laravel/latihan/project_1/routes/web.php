@@ -47,19 +47,3 @@ Route::get('/kategori', function() {
     ]);
 });
 
-Route::get('/kategori/{kategori:slug}', function(Kategori_model $kategori) {
-    return view('v_blog.blog', [
-        'title' => "Postingan dengan kategori: <br> <span class='text-danger'>$kategori->nama</span>",
-        'active' => 'kategori',
-        'dataPosts' => $kategori->Post_model->load('Kategori_model', 'author')
-    ]);
-});
-
-// user
-Route::get('/author/{author:username}', function(User $author) {
-    return view('v_blog.blog', [
-        'title' => "Postingan dari author: <br> <span class='text-danger'>$author->name</span>",
-        'dataPosts' => $author->Post_model->load('Kategori_model', 'author')
-    ]);
-});
-

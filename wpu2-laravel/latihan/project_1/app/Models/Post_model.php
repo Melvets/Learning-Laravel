@@ -11,11 +11,33 @@ class Post_model extends Model
     use HasFactory;
 
     protected $table = "post";
-
-    // protected $fillable = ['title', 'excerpt', 'body'];
     protected $guarded = ['id'];
-
     protected $with = ['author', 'Kategori_model'];
+
+    public function scopeFilter($query, array $filters)
+    {   
+        // if( isset($filters['search']) ? $filters['search'] : false ) {
+        //     return $query->where('title', 'like', '%' . $filters['search'] . '%')
+        //                  ->orWhere('body', 'like', '%' . $filters['search'] . '%');
+        // }
+
+        $query->when( ($filters['search']) ?? false, function($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%')
+                        ->orWhere('body', 'like', '%' . $search . '%');
+        } );
+
+        $query->when( $filters['kategori'] ?? false, function($query, $kategori) {
+            return $query->whereHas('Kategori_model', function($query) use ($kategori) {
+                $query->where('slug', $kategori);
+            });
+        } );
+
+        $query->when( $filters['author'] ?? false, fn($query, $author) =>
+            $query->whereHas('author', fn($query) =>
+                $query->where('username', $author)
+            )
+        );
+    }
 
     public function Kategori_model()
     {

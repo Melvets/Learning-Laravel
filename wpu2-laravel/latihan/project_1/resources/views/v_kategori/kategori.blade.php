@@ -11,7 +11,7 @@
 
             <div class="col-md-4">
                 
-                <a href="/kategori/{{ $data->slug }}">
+                <a href="/post?kategori={{ $data->slug }}">
                     
                     <div class="card bg-dark text-white">
                         <div class="position-absolute px-5 py-1" style="background-color: rgba(0, 0, 0, 0.7)"> 

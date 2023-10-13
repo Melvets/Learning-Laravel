@@ -10,7 +10,7 @@
                     <article>
                         <h1>{{ $dataPost->title }}</h1>
             
-                        <p>By. <a href="/author/{{ $dataPost->author->username }}" class="text-decoration-none">{{ $dataPost->author->name }}</a> in <a href="/kategori/{{ $dataPost->Kategori_model->slug }}" class="text-decoration-none">{{ $dataPost->Kategori_model->nama }}</a> </p>
+                        <p>By. <a href="/blog?author={{ $dataPost->author->username }}" class="text-decoration-none">{{ $dataPost->author->name }}</a> in <a href="/blog?kategori={{ $dataPost->Kategori_model->slug }}" class="text-decoration-none">{{ $dataPost->Kategori_model->nama }}</a> </p>
 
                         <img src="https://source.unsplash.com/1200x400?{{ $dataPost->Kategori_model->nama }}" alt="{{ $dataPost->Kategori_model->nama }}" class="img-fluid">
 
