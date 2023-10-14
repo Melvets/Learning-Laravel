@@ -19,6 +19,13 @@
             <a class="nav-link {{ ($active === "kategori") ? 'active' :  '' }}" href="/kategori">Kategori</a>
           </li>
         </ul>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link {{ ($active === "login") ? 'active' :  '' }}" href="/login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+          </li>
+        </ul>
+
       </div>
     </div>
 </nav>
