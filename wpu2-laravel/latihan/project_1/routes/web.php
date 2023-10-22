@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Kategori_model;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostsController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,29 +26,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('v_about.about', [
-        'title' => 'About',
-        'active' => 'about',
-        'nama' => 'Camela Devs',
-        'alamat' => 'Jalan Kesini',
-        'hobi' => 'Memancing keributan',
-        'img' => 'Diluc.jpg' 
-    ]);
-});
+// About
+Route::get('/about', [AboutController::class, 'index']);
 
+// Blog
 Route::get('/blog', [PostController::class, 'index']);
-
-// detail blog
 Route::get('blog/{post:slug}', [PostController::class, 'show']);
-// kategori
-Route::get('/kategori', function() {
-    return view('v_kategori.kategori', [
-        'title' => 'Kategori',
-        'active' => 'kategori',
-        'dataKategori' => Kategori_model::all()
-    ]);
-});
+
+// Kategori
+Route::get('/kategori', [KategoriController::class, 'index']);
 
 // Login
 Route::get('/login', [LoginController::class, 'create'])->name('login')->middleware('guest');
@@ -59,4 +46,9 @@ Route::get('/register', [RegisterController::class, 'create'])->middleware('gues
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function() {
+    return view('v_dashboard.index');
+})->middleware('auth');
+
+// Dashboard Posts
+Route::resource('/dashboard/posts', DashboardPostsController::class)->middleware('auth');

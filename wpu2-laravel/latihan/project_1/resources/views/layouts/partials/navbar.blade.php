@@ -51,7 +51,7 @@
           @else
 
             <li class="nav-item">
-              <a class="nav-link {{ ($active === "login") ? 'active' :  '' }}" href="/login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+              <a class="btn btn-danger text-light px-3 py-1 pb-2" href="/login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
             </li>
 
           @endauth

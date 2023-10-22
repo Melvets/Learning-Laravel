@@ -5,5 +5,5 @@
     <p>Nama : {{ $nama }}</p>
     <p>Alamat : {{ $alamat }}</p>
     <p>Hobi : {{ $hobi }}</p>
-    <img src="/img/{{ $img }}" alt="{{ $nama }}">
+    <img src="/img/{{ $img }}" alt="{{ $nama }}" width="100">
 @endsection
