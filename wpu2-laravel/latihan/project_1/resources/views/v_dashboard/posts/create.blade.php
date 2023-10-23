@@ -8,20 +8,30 @@
 
     <div class="col-lg-10">
 
-        <form method="POST" action="/dashboard/posts">
+        <form class="mb-5" method="POST" action="/dashboard/posts">
 
             @csrf
 
             {{-- Title --}}
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control" id="title" name="title">
+              <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
+              @error('title')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
 
             {{-- Slug --}}
             <div class="mb-3">
               <label for="slug" class="form-label">Slug</label>
-              <input type="text" class="form-control" id="slug" name="slug" disabled readonly>
+              <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}">
+              @error('slug')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
 
             {{-- Kategori --}}
@@ -29,7 +39,11 @@
               <label for="slug" class="form-label">Kategori</label>
               <select class="form-select" name="kategori_id">
                 @foreach ($dataKategori as $data)
-                  <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                  @if(old('kategori_id') == $data->id)
+                    <option value="{{ $data->id }}" selected>{{ $data->nama }}</option>
+                  @else
+                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                  @endif
                 @endforeach
               </select>
             </div>
@@ -37,7 +51,10 @@
             {{-- Body --}}
             <div class="mb-3">
               <label for="body" class="form-label">Body</label>
-              <input id="body" type="hidden" name="body">
+              @error('body')
+                <p class="text-danger">{{ $message }}</p>   
+              @enderror
+              <input id="body" type="hidden" name="body" value="{{ old('body') }}">
               <trix-editor input="body"></trix-editor>
             </div>
 
