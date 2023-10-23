@@ -6,9 +6,12 @@ use App\Models\Kategori_model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+
 class Post_model extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $table = "post";
     protected $guarded = ['id'];
@@ -52,5 +55,14 @@ class Post_model extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
