@@ -85,3 +85,4 @@ Database Seeder
 command
 php artisan db:seed
 php artisan migrate:fresh --seed
+php artisan route:list

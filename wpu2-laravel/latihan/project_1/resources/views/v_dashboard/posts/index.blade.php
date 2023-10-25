@@ -13,7 +13,7 @@
   @endif
 
 
-  <div class="table-responsive col-lg-8">
+  <div class="table-responsive col-lg-12">
 
     <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
     
@@ -35,8 +35,14 @@
                 <td>{{ $data->kategori_model->nama }}</td>
                 <td>
                   <a href="/dashboard/posts/{{ $data->slug }}" class="badge bg-info m-0 p-0 pt-1 px-2"><i class="bi bi-eye"></i></a>
-                  <a href="" class="badge bg-warning m-0 p-0 pt-1 px-2"><i class="bi bi-pencil-fill"></i></a>
-                  <a href="" class="badge bg-danger m-0 p-0 pt-1 px-2"><i class="bi bi-x-circle"></i></a>
+                  <a href="/dashboard/posts/{{ $data->slug }}/edit" class="badge bg-warning m-0 p-0 pt-1 px-2"><i class="bi bi-pencil-fill"></i></a>
+                  <form action="/dashboard/posts/{{ $data->slug }}" method="POST" class="d-inline">
+
+                    @method('delete')
+                    @csrf
+
+                    <button class="badge bg-danger m-0 p-0 pt-1 px-2 border-0" onclick="return confirm('Apakah Anda yakin ingin menghapus postingan ini?')"><i class="bi bi-x-circle"></i></button>
+                  </form>
                 </td>
             </tr>
           @endforeach

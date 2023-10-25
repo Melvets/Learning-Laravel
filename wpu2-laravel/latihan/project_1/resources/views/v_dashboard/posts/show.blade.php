@@ -13,8 +13,15 @@
                         <p>By. <a href="/blog?author={{ $dataPost->author->username }}" class="text-decoration-none">{{ $dataPost->author->name }}</a> in <a href="/blog?kategori={{ $dataPost->Kategori_model->slug }}" class="text-decoration-none">{{ $dataPost->Kategori_model->nama }}</a> </p>
 
                         <a href="/dashboard/posts" class="btn btn-success my-3"><i class="bi bi-chevron-double-left me-2"></i>Back to all</a>
-                        <a href="" class="btn btn-warning my-3"><i class="bi bi-pencil-fill me-2"></i>Edit</a>
-                        <a href="" class="btn btn-danger my-3"><i class="bi bi-x-circle me-2"></i>Delete</a>
+                        <a href="/dashboard/posts/{{ $dataPost->slug }}/edit" class="btn btn-warning text-light my-3"><i class="bi bi-pencil-fill me-2"></i>Edit</a>
+                        <form action="/dashboard/posts/{{ $dataPost->slug }}" method="POST" class="d-inline">
+
+                            @method('delete')
+                            @csrf
+        
+                            <button class="btn btn-danger my-3" onclick="return confirm('Apakah Anda yakin ingin menghapus postingan ini?')"><i class="bi bi-x-circle me-2"></i>Delete</button>
+                        
+                        </form>
 
                         <img src="https://source.unsplash.com/1200x400?{{ $dataPost->Kategori_model->nama }}" alt="{{ $dataPost->Kategori_model->nama }}" class="img-fluid">
 
