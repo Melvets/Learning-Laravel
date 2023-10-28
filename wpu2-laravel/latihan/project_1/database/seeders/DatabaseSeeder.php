@@ -17,27 +17,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
         Post_model::factory(20)->create();
+        
+        User::create([
+            'name' => 'Camela Devs',
+            'username' => 'meldsvt',
+            'email' => 'camelaputri1@gmail.com',
+            'password' => bcrypt('meldsvt')
+        ]);
 
-        // User::create([
-        //     'name' => 'Camela Devs',
-        //     'email' => 'camelaputri1@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
+        User::create([
+            'name' => 'Zakaria Adiwibowo',
+            'username' => 'zackadiw',
+            'email' => 'zackadiw@gmail.com',
+            'password' => bcrypt('zackadiw')
+        ]);
 
-        // User::create([
-        //     'name' => 'Muhammad Nazril Ilham',
-        //     'email' => 'ilhamjepara@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
+        User::create([
+            'name' => 'Syawal Ananda Syahputra',
+            'username' => 'wangwang',
+            'email' => 'syawal@gmail.com',
+            'password' => bcrypt('wang')
+        ]);
 
-        // User::create([
-        //     'name' => 'Syawal Ananda Syahputra',
-        //     'email' => 'syawal@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
-
+        User::factory(5)->create();
+        
         Kategori_model::create([
             'nama' => 'Web Programming',
             'slug' => 'web-programming'

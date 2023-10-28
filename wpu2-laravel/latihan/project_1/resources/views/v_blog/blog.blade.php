@@ -28,7 +28,16 @@
 
     @if ($dataPosts->count())
         <div class="card mb-3">
-            <img src="https://source.unsplash.com/1200x400?{{ $dataPosts[0]->Kategori_model->nama }}" class="card-img-top" alt="{{ $dataPosts[0]->Kategori_model->nama }}">
+
+            {{-- Big Image --}}
+            @if ($dataPosts[0]->image)
+                <div style="max-height: 350px; overflow:hidden;">
+                    <img src="{{ asset('storage/' . $dataPosts[0]->image) }}" alt="{{ $dataPosts[0]->Kategori_model->nama }}" class="card-img-top">                            
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{ $dataPosts[0]->Kategori_model->nama }}" class="card-img-top" alt="{{ $dataPosts[0]->Kategori_model->nama }}">
+            @endif
+
             <div class="card-body text-center">
                 <h3 class="card-title"><a href="/blog/{{ $dataPosts[0]->slug }}" class="text-decoration-none text-dark">{{ $dataPosts[0]->title }}</a></h3>
 
@@ -55,7 +64,13 @@
 
                     <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)"> <a href="/blog?kategori={{ $data->Kategori_model->slug }}" class="text-decoration-none text-white">{{ $data->kategori_model->nama }}</a></div>
 
-                    <img src="https://source.unsplash.com/400x300?{{ $data->Kategori_model->nama }}" class="card-img-top" alt="{{ $data->Kategori_model->nama }}">
+                    {{-- Mini Image --}}
+                    @if ($data->image)
+                        <img src="{{ asset('storage/' . $data->image) }}" alt="{{ $data->Kategori_model->nama }}" class="img-fluid">                            
+                    @else
+                        <img src="https://source.unsplash.com/400x300?{{ $data->Kategori_model->nama }}" class="card-img-top" alt="{{ $data->Kategori_model->nama }}">
+                    @endif                    
+
                     <div class="card-body">
                         <h5 class="card-title">{{ $data->title }}</h5>
                         <p>

@@ -23,7 +23,13 @@
                         
                         </form>
 
-                        <img src="https://source.unsplash.com/1200x400?{{ $dataPost->Kategori_model->nama }}" alt="{{ $dataPost->Kategori_model->nama }}" class="img-fluid">
+                        @if ($dataPost->image)
+                            <div style="max-height: 350px; overflow:hidden;">
+                                <img src="{{ asset('storage/' . $dataPost->image) }}" alt="{{ $dataPost->Kategori_model->nama }}" class="img-fluid">                            
+                            </div>
+                        @else
+                            <img src="https://source.unsplash.com/1200x400?{{ $dataPost->Kategori_model->nama }}" alt="{{ $dataPost->Kategori_model->nama }}" class="img-fluid">
+                        @endif
 
                         <article class="my-3">
                             {!! $dataPost->body !!}
