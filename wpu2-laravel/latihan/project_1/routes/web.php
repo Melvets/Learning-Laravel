@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminKategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -53,3 +54,6 @@ Route::get('/dashboard', function() {
 // Dashboard Posts
 Route::get('/dashboard/posts/checkSlug', [DashboardPostsController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostsController::class)->middleware('auth');
+
+// Dashboard Admin Kategori
+Route::resource('/dashboard/kategori', AdminKategoriController::class)->except('show')->middleware('admin');
