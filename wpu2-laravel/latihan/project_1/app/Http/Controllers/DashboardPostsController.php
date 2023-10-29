@@ -6,6 +6,7 @@ use App\Models\Post_model;
 use App\Models\Kategori_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -58,7 +59,7 @@ class DashboardPostsController extends Controller
         }
 
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 400);
 
         Post_model::create($validatedData);
 
@@ -104,6 +105,7 @@ class DashboardPostsController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'kategori_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ];
 
@@ -113,8 +115,15 @@ class DashboardPostsController extends Controller
 
         $validatedData = $request->validate($rules); 
 
+        if ($request->file('image')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
+
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 400);
 
         Post_model::where('id', $post->id)
                 -> update($validatedData);
@@ -130,6 +139,10 @@ class DashboardPostsController extends Controller
      */
     public function destroy(Post_model $post)
     {
+        if($post->image) {
+            Storage::delete($post->image);
+        }
+
         Post_model::destroy($post->id);
 
         return redirect('/dashboard/posts')->with('success', 'Post has been deleteed!');
