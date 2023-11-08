@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Laravel\Prompts\Key;
+
+// MENGGUNAKAN MODEL ============================================================
 
 class KelasController extends Controller
 {
+
+    // GET
     public function index()
     {
         $data['dataKelas'] = Kelas::get();
@@ -19,13 +22,15 @@ class KelasController extends Controller
         return view('kelas.index', $data, ["title" => "Kelas"]);
     }
 
+    // GET
     public function create()
     {
-        $data['dataJurusan'] = DB::table('jurusan')->get();
+        $data['dataJurusan'] = Jurusan::get();
 
         return view('kelas.create', $data, ["title" => "Kelas"]);
     }
 
+    // POST
     public function store(Request $request)
     {
         $kelas = New Kelas;
@@ -39,20 +44,26 @@ class KelasController extends Controller
         return redirect('/sekolah/kelas');
     }
 
+    // GET
     public function show($id)
     {
         //
     }
 
+    // GET
     public function edit(string $id)
     {
+        // $data['dataKelas'] = DB::table('kelas')->where('id', $id)->first();
+        // $data['dataJurusan'] = DB::table('jurusan')->get();
+
         $data['id'] = $id;
-        $data['dataKelas'] = DB::table('kelas')->where('id', $id)->first();
-        $data['dataJurusan'] = DB::table('jurusan')->get();
+        $data['dataKelas'] = Kelas::find($id);
+        $data['dataJurusan'] = Jurusan::get();
 
         return view('kelas.edit', $data, ["title" => "Kelas"]);
     }
 
+    // PUT / PATCH
     public function update(Request $request, string $id)
     {
 
@@ -71,10 +82,14 @@ class KelasController extends Controller
         return redirect('/sekolah/kelas');
     }
 
+    // DELETE
     public function destroy($id)
     {
-        DB::table('kelas')->where('id', $id)->delete();
+        // DB::table('kelas')->where('id', $id)->delete();
 
+        $kelas = Kelas::find($id);
+        $kelas->delete();
+        
         return redirect('/sekolah/kelas');
     }
 }

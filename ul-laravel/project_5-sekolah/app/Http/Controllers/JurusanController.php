@@ -5,23 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+// MENGGUNAKAN DB ============================================================
+
 class JurusanController extends Controller
 {
 
+    // GET
     public function index()
     {
-        $data['dataJurusan'] = DB::table('jurusan')->get();
+        $data['dataJurusan'] = DB::table('jurusan')->paginate(5);
 
         return view('jurusan.index', $data, ["title" => "Jurusan"]);
     }
 
-
+    // GET
     public function create()
     {
         return view('jurusan.create', ["title" => "Jurusan"]);
     }
 
-
+    // POST
     public function store(Request $request)
     {
         $data['jurusan'] = $request->input('inputJurusan');
@@ -32,13 +35,13 @@ class JurusanController extends Controller
         return redirect('/sekolah/jurusan');
     }
 
-
+    // GET
     public function show($id)
     {
         //
     }
 
-
+    // GET
     public function edit(string $id)
     {
         $data['id'] = $id;
@@ -47,7 +50,7 @@ class JurusanController extends Controller
         return view('jurusan.edit', $data, ["title" => "Jurusan"]);
     }
 
-
+    // PUT / PATCH
     public function update(Request $request, string $id)
     {
         $data['jurusan'] = $request->input('inputJurusan');
@@ -57,7 +60,7 @@ class JurusanController extends Controller
         return redirect('/sekolah/jurusan');
     }
 
-
+    // DELETE
     public function destroy($id)
     {
         DB::table('jurusan')->where('id', $id)->delete();

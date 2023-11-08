@@ -15,7 +15,17 @@
 
 <div class="container">
     <div class="card">
-        <div class="card-header">Data Jurusan</div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="">
+                Data Jurusan
+            </div>
+
+            <div class="input-group-sm">
+                <input type="text" class="form-control-sm border border-gray" placeholder="Cari!" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary border border-gray" type="button" id="button-addon2">Cari!</button>
+            </div>
+        </div>
+        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -57,6 +67,16 @@
                         @endforeach    
                     </tbody>
                   </table>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <div class="">
+                <p class="m-0 p-0 text-secondary">Showing <span>0</span> of <span>0</span> entries</p>
+            </div>
+            <div class="">
+                
+                    {{ $dataJurusan->links() }}
+                
             </div>
         </div>
     </div>
