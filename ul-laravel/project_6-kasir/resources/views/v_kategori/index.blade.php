@@ -24,6 +24,14 @@
                             <td>{{ $data->nama_kategori }}</td>
                             <td>
                                 <a href="/kategori/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
+                                <form action="/kategori/{{ $data->id }}" method="POST">
+                                    
+                                    @csrf
+                                    @method('delete')
+
+                                    <button type="submit" onclick="return confirm('Apakah Anda yakin?')" class="btn btn-danger">Hapus</button>
+
+                                </form>
                             </td>
                         </tr>
                     @endforeach
