@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kategori_id');
             $table->string('nama_barang');
-            $table->string('harga');
+            $table->decimal('harga');
             $table->integer('jumlah_barang');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

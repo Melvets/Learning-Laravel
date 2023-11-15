@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -13,7 +15,10 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $data ['barang'] = Barang::all();
+
+        return view('v_barang.index', $data);
+
     }
 
     /**
@@ -23,7 +28,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $data['kategori'] = Kategori::all();
+
+        return view('v_barang.create', $data);
     }
 
     /**
@@ -34,7 +41,23 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $nama_file = time().'.'.$request->gambar->extension();
+
+        $request->file->move(public_path('gambar', $nama_file));
+
+        $barang = new Barang();
+
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->kategori_id = $request->input('kategori_id');
+        $barang->harga = $request->input('harga');
+        $barang->jumlah_barang = $request->input('jumlah_harga');
+        $barang->gambar = $nama_file;
+
+        $barang->save();
+
+        return redirect('/barang');
+
     }
 
     /**
