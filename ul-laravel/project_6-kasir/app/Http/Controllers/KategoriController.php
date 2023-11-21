@@ -12,7 +12,9 @@ class KategoriController extends Controller
     {
         $data['kategori'] = Kategori::all();
 
-        return view('v_kategori.index', $data);
+        return view('v_kategori.index', $data, [
+            'active' => 'kategori'
+        ]);
     }
 
     public function create()

@@ -26,14 +26,14 @@
                             <td>{{ $data->nama_barang }}</td>
                             <td>{{ $data->kategori->nama_kategori }}</td>
                             <td>{{ $data->harga }}</td>
-                            <td>
-                                <a href="/kategori/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
-                                <form action="/kategori/{{ $data->id }}" method="POST">
+                            <td class="d-flex">
+                                <a href="/barang/{{ $data->id }}/edit" class="btn text-green btn-lg shadow rounded-2" title="update"><i class="fas fa-pen text-success"></i></a>
+                                <form action="/barang/{{ $data->id }}" method="POST">
                                     
                                     @csrf
                                     @method('delete')
 
-                                    <button type="submit" onclick="return confirm('Apakah Anda yakin?')" class="btn btn-danger">Hapus</button>
+                                    <button type="submit" onclick="return confirm('Apakah Anda yakin?')" class="btn text-danger btn-lg shadow rounded-2" title="delete"><i class="fa-solid fa-trash"></i></button>
 
                                 </form>
                             </td>

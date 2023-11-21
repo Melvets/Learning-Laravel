@@ -17,7 +17,9 @@ class BarangController extends Controller
     {
         $data ['barang'] = Barang::all();
 
-        return view('v_barang.index', $data);
+        return view('v_barang.index', $data, [
+            'active' => 'barang'
+        ]);
 
     }
 
@@ -42,17 +44,17 @@ class BarangController extends Controller
     public function store(Request $request)
     {
 
-        $nama_file = time().'.'.$request->gambar->extension();
+        // $nama_file = time().'.'.$request->gambar->extension();
 
-        $request->file->move(public_path('gambar', $nama_file));
+        // $request->file->move(public_path('gambar', $nama_file));
 
         $barang = new Barang();
 
         $barang->nama_barang = $request->input('nama_barang');
         $barang->kategori_id = $request->input('kategori_id');
         $barang->harga = $request->input('harga');
-        $barang->jumlah_barang = $request->input('jumlah_harga');
-        $barang->gambar = $nama_file;
+        $barang->jumlah_barang = $request->input('jumlah_barang');
+        // $barang->gambar = $nama_file;
 
         $barang->save();
 
@@ -79,7 +81,10 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['barang'] = Barang::find($id);
+        $data['kategori'] = Kategori::all();
+
+        return view('v_barang.edit', $data);
     }
 
     /**
@@ -91,7 +96,17 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $barang = Barang::find($id);
+
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->kategori_id = $request->input('kategori_id');
+        $barang->harga = $request->input('harga');
+        $barang->jumlah_barang = $request->input('jumlah_barang');
+        // $barang->gambar = $nama_file;
+
+        $barang->save();
+
+        return redirect('/barang');
     }
 
     /**
@@ -102,6 +117,10 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kategori = Barang::find($id);
+
+        $kategori->delete();
+
+        return redirect('/barang');
     }
 }
