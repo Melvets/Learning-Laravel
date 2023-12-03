@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignID('customer_id');
             $table->foreignID('mobil_id');
-            $table->string('tanggal_sewa');
-            $table->string('tanggal_selesai');
+            $table->integer('durasi_sewa');
+            $table->date('tanggal_sewa');
+            $table->date('tanggal_selesai');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

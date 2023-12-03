@@ -2,64 +2,90 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mobil;
+use App\Models\Customer;
 use App\Models\DetailSewa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DetailSewaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view('v_dashboard.v_detailsewa.index', [
+            'dataDetailSewa' => DetailSewa::all(),
+            'title' => 'Detail Sewa'
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('v_dashboard.v_detailsewa.create', [
+            'dataCustomer' => Customer::all(),
+            'dataMobil' => Mobil::all(),
+            'dataDetailSewa' => DetailSewa::all(),
+            'title' => 'Create Detail Sewa'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'customer_id' => 'required',
+            'mobil_id' => 'required',
+            'durasi_sewa' => 'required|numeric',
+            'tanggal_sewa' => 'required|date',
+            'tanggal_selesai' => 'required|date',
+            'harga' => 'required|numeric',
+        ]);
+
+        // $validateData['tanggal_sewa'] = Carbon::parse($validateData['tanggal_sewa'])->format('D, Y-m-d');
+        // $validateData['tanggal_sewa'] instanceof \Carbon\Carbon;
+
+        DetailSewa::create($validateData);
+
+        return redirect('/dashboard/detailsewa');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(DetailSewa $detailSewa)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DetailSewa $detailSewa)
+    public function edit(DetailSewa $detailSewa, $id)
     {
-        //
+        return view('v_dashboard.v_detailsewa.edit', [
+            'dataCustomer' => Customer::all(),
+            'dataMobil' => Mobil::all(),
+            'dataDetailSewa' => DetailSewa::find($id),
+            'title' => 'Edit Detail Sewa'
+        ]);        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, DetailSewa $detailSewa)
+    public function update(Request $request, DetailSewa $detailSewa, $id)
     {
-        //
+
+        $detailSewa = DetailSewa::find($id);
+
+        $validateData = $request->validate([
+            'customer_id' => 'required',
+            'mobil_id' => 'required',
+            'durasi_sewa' => 'required|numeric',
+            'tanggal_sewa' => 'required|date',
+            'tanggal_selesai' => 'required|date',
+            'harga' => 'required|numeric',
+        ]);
+
+        DetailSewa::where('id', $detailSewa->id)->update($validateData);
+        
+        return redirect('/dashboard/detailsewa');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(DetailSewa $detailSewa)
+    public function destroy(DetailSewa $detailSewa, $id)
     {
-        //
+        $detailSewa = DetailSewa::find($id);
+        DetailSewa::destroy($detailSewa->id);
+
+        return redirect('/dashboard/detailsewa');
     }
 }

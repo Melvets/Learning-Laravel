@@ -1,162 +1,132 @@
-var my_skins = ["skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"];
-$(function () {
-  /* For demo purposes */
-  var demo = $("<div />").css({
-    position: "fixed",
-    top: "70px",
-    right: "0",
-    background: "#fff",
-    "border-radius": "5px 0px 0px 5px",
-    padding: "10px 15px",
-    "font-size": "16px",
-    "z-index": "99999",
-    cursor: "pointer",
-    color: "#3c8dbc",
-    "box-shadow": "0 1px 3px rgba(0,0,0,0.1)"
-  }).html("<i class='fa fa-gear'></i>").addClass("no-print");
+/*!
+* Tabler v1.0.0-beta19 (https://tabler.io)
+* @version 1.0.0-beta19
+* @link https://tabler.io
+* Copyright 2018-2023 The Tabler Authors
+* Copyright 2018-2023 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+*/
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+})((function () { 'use strict';
 
-  var demo_settings = $("<div />").css({
-    "padding": "10px",
-    position: "fixed",
-    top: "70px",
-    right: "-250px",
-    background: "#fff",
-    border: "0px solid #ddd",
-    "width": "250px",
-    "z-index": "99999",
-    "box-shadow": "0 1px 3px rgba(0,0,0,0.1)"
-  }).addClass("no-print");
-  demo_settings.append(
-          "<h4 class='text-light-blue' style='margin: 0 0 5px 0; border-bottom: 1px solid #ddd; padding-bottom: 15px;'>Layout Options</h4>"
-          //Fixed layout
-          + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' onchange='change_layout(\"fixed\");'/> "
-          + "Fixed layout"
-          + "</label>"
-          + "</div>"
-          + "</div>"
-          //Boxed layout
-          + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' onchange='change_layout(\"layout-boxed\");'/> "
-          + "Boxed Layout"
-          + "</label>"
-          + "</div>"
-          + "</div>"
-          //Sidebar Collapse
-          + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' onchange='change_layout(\"sidebar-collapse\");'/> "
-          + "Collapsed Sidebar"
-          + "</label>"
-          + "</div>"
-          + "</div>"
-          );
-  var skins_list = $("<ul />", {"class": 'list-unstyled'});
-  var skin_blue =
-          $("<li />", {style: "float:left; width: 50%; padding: 5px;"})
-          .append("<a href='#' onclick='change_skin(\"skin-blue\")' style='display: block; box-shadow: -1px 1px 2px rgba(0,0,0,0.0);' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 10px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 10px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 40px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;'></span></div>"
-                  + "<p class='text-center'>Skin Blue</p>"
-                  + "</a>");
-  skins_list.append(skin_blue);
-  var skin_black =
-          $("<li />", {style: "float:left; width: 50%; padding: 5px;"})
-          .append("<a href='#' onclick='change_skin(\"skin-black\")' style='display: block; box-shadow: -1px 1px 2px rgba(0,0,0,0.0);' class='clearfix full-opacity-hover'>"
-                  + "<div style='box-shadow: 0 0 2px rgba(0,0,0,0.1)' class='clearfix'><span style='display:block; width: 20%; float: left; height: 10px; background: #fefefe;'></span><span style='display:block; width: 80%; float: left; height: 10px; background: #fefefe;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 40px; background: #222;'></span><span style='display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;'></span></div>"
-                  + "<p class='text-center'>Skin Black</p>"
-                  + "</a>");
-  skins_list.append(skin_black);
-  var skin_purple =
-          $("<li />", {style: "float:left; width: 50%; padding: 5px;"})
-          .append("<a href='#' onclick='change_skin(\"skin-purple\")' style='display: block; box-shadow: -1px 1px 2px rgba(0,0,0,0.0);' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 10px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 10px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 40px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;'></span></div>"
-                  + "<p class='text-center'>Skin Purple</p>"
-                  + "</a>");
-  skins_list.append(skin_purple);
-  var skin_green =
-          $("<li />", {style: "float:left; width: 50%; padding: 5px;"})
-          .append("<a href='#' onclick='change_skin(\"skin-green\")' style='display: block; box-shadow: -1px 1px 2px rgba(0,0,0,0.0);' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 10px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 10px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 40px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;'></span></div>"
-                  + "<p class='text-center'>Skin Green</p>"
-                  + "</a>");
-  skins_list.append(skin_green);
-    var skin_red =
-          $("<li />", {style: "float:left; width: 50%; padding: 5px;"})
-          .append("<a href='#' onclick='change_skin(\"skin-red\")' style='display: block; box-shadow: -1px 1px 2px rgba(0,0,0,0.0);' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 10px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 10px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 40px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;'></span></div>"
-                  + "<p class='text-center'>Skin Red</p>"
-                  + "</a>");
-  skins_list.append(skin_red);
-    var skin_yellow =
-          $("<li />", {style: "float:left; width: 50%; padding: 5px;"})
-          .append("<a href='#' onclick='change_skin(\"skin-yellow\")' style='display: block; box-shadow: -1px 1px 2px rgba(0,0,0,0.0);' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 10px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 10px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 40px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;'></span></div>"
-                  + "<p class='text-center'>Skin Yellow</p>"
-                  + "</a>");
-  skins_list.append(skin_yellow);
-
-  demo_settings.append("<h4 class='text-light-blue' style='margin: 0 0 5px 0; border-bottom: 1px solid #ddd; padding-bottom: 15px;'>Skins</h4>");
-  demo_settings.append(skins_list);
-
-  demo.click(function () {
-    if (!$(this).hasClass("open")) {
-      $(this).animate({"right": "250px"});
-      demo_settings.animate({"right": "0"});
-      $(this).addClass("open");
-    } else {
-      $(this).animate({"right": "0"});
-      demo_settings.animate({"right": "-250px"});
-      $(this).removeClass("open");
+  function _iterableToArrayLimit(arr, i) {
+    var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+    if (null != _i) {
+      var _s,
+        _e,
+        _x,
+        _r,
+        _arr = [],
+        _n = !0,
+        _d = !1;
+      try {
+        if (_x = (_i = _i.call(arr)).next, 0 === i) {
+          if (Object(_i) !== _i) return;
+          _n = !1;
+        } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0);
+      } catch (err) {
+        _d = !0, _e = err;
+      } finally {
+        try {
+          if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return;
+        } finally {
+          if (_d) throw _e;
+        }
+      }
+      return _arr;
     }
-  });
-
-  $("body").append(demo);
-  $("body").append(demo_settings);
-
-  setup();
-});
-
-function change_layout(cls) {
-  $("body").toggleClass(cls);
-  $.AdminLTE.layout.fixSidebar();  
-}
-function change_skin(cls) {  
-  $.each(my_skins, function (i) {
-    $("body").removeClass(my_skins[i]);
-  });
-
-  $("body").addClass(cls);
-  store('skin', cls);
-  return false;
-}
-function store(name, val) {
-  if (typeof (Storage) !== "undefined") {
-    localStorage.setItem(name, val);
-  } else {
-    alert('Please use a modern browser to properly view this template!');
   }
-}
-function get(name) {
-  if (typeof (Storage) !== "undefined") {
-    return localStorage.getItem(name);
-  } else {
-    alert('Please use a modern browser to properly view this template!');
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
   }
-}
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+    return arr2;
+  }
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
 
-function setup() {
-  var tmp = get('skin');
-  if (tmp && $.inArray(tmp, my_skins))
-    change_skin(tmp);
-}
+  var items = {
+    "menu-position": {
+      localStorage: "tablerMenuPosition",
+      default: "top"
+    },
+    "menu-behavior": {
+      localStorage: "tablerMenuBehavior",
+      default: "sticky"
+    },
+    "container-layout": {
+      localStorage: "tablerContainerLayout",
+      default: "boxed"
+    }
+  };
+  var config = {};
+  for (var _i = 0, _Object$entries = Object.entries(items); _i < _Object$entries.length; _i++) {
+    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+      key = _Object$entries$_i[0],
+      params = _Object$entries$_i[1];
+    var lsParams = localStorage.getItem(params.localStorage);
+    config[key] = lsParams ? lsParams : params.default;
+  }
+  var parseUrl = function parseUrl() {
+    var search = window.location.search.substring(1);
+    var params = search.split("&");
+    for (var i = 0; i < params.length; i++) {
+      var arr = params[i].split("=");
+      var _key = arr[0];
+      var value = arr[1];
+      if (!!items[_key]) {
+        localStorage.setItem(items[_key].localStorage, value);
+        config[_key] = value;
+      }
+    }
+  };
+  var toggleFormControls = function toggleFormControls(form) {
+    for (var _i2 = 0, _Object$entries2 = Object.entries(items); _i2 < _Object$entries2.length; _i2++) {
+      var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+        _key2 = _Object$entries2$_i[0];
+        _Object$entries2$_i[1];
+      var elem = form.querySelector("[name=\"settings-".concat(_key2, "\"][value=\"").concat(config[_key2], "\"]"));
+      if (elem) {
+        elem.checked = true;
+      }
+    }
+  };
+  var submitForm = function submitForm(form) {
+    for (var _i3 = 0, _Object$entries3 = Object.entries(items); _i3 < _Object$entries3.length; _i3++) {
+      var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
+        _key3 = _Object$entries3$_i[0],
+        _params2 = _Object$entries3$_i[1];
+      var value = form.querySelector("[name=\"settings-".concat(_key3, "\"]:checked")).value;
+      localStorage.setItem(_params2.localStorage, value);
+      config[_key3] = value;
+    }
+    window.dispatchEvent(new Event("resize"));
+    new bootstrap.Offcanvas(form).hide();
+  };
+  parseUrl();
+  var form = document.querySelector("#offcanvasSettings");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      submitForm(form);
+    });
+    toggleFormControls(form);
+  }
+
+}));

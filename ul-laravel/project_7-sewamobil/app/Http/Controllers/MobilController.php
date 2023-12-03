@@ -13,7 +13,8 @@ class MobilController extends Controller
     public function index()
     {
         return view('v_dashboard.v_mobil.index', [
-            'dataMobil' => Mobil::all()
+            'dataMobil' => Mobil::all(),
+            'title' => 'Mobil'
         ]);
     }
 
@@ -22,7 +23,9 @@ class MobilController extends Controller
      */
     public function create()
     {
-        return view('v_dashboard.v_mobil.create');
+        return view('v_dashboard.v_mobil.create', [
+            'title' => 'Create Mobil'
+        ]);
     }
 
     /**
@@ -31,7 +34,7 @@ class MobilController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'merk' => 'required|unique:mobil',
+            'merk' => 'required',
             'model' => 'required',
             'tahun_produksi' => 'required',
             'warna' => 'required',
@@ -54,12 +57,11 @@ class MobilController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Mobil $mobil, $id)
+    public function edit(Mobil $mobil)
     {
-
-        // dd($mobil);
         return view('v_dashboard.v_mobil.edit', [
-            'dataMobil' => Mobil::find($id)
+            'dataMobil' => $mobil,
+            'title' => 'Edit Mobil'
         ]);
     }
 
@@ -68,7 +70,17 @@ class MobilController extends Controller
      */
     public function update(Request $request, Mobil $mobil)
     {
-        //
+        $validateData = $request->validate([
+            'merk' => 'required',
+            'model' => 'required',
+            'tahun_produksi' => 'required',
+            'warna' => 'required',
+            'nomor_polisi' => 'required'
+        ]);
+
+        Mobil::where('id', $mobil->id)->update($validateData);
+
+        return redirect('/dashboard/mobil');
     }
 
     /**
@@ -76,6 +88,7 @@ class MobilController extends Controller
      */
     public function destroy(Mobil $mobil)
     {
-        //
+        Mobil::destroy($mobil->id);
+        return redirect('/dashboard/mobil');
     }
 }

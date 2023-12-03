@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DetailSewaController;
 use App\Http\Controllers\MobilController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('v_dashboard.index');
+    return view('v_dashboard.index', [
+        'title' => 'Home'
+    ]);
 });
 
 Route::resource('/dashboard/mobil', MobilController::class);
+Route::resource('/dashboard/customer', CustomerController::class);
+Route::resource('/dashboard/detailsewa', DetailSewaController::class);

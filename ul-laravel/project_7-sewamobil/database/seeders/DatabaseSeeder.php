@@ -56,29 +56,37 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Customer::create([
-            'nama' => 'Camela Devs',
+            'nama_depan' => 'Camela',
+            'nama_belakang' => 'Devs',
             'telepon' => 6285236596684,
+            'email' => 'camelaputri1@gmail.com',
             'alamat' => 'Semarang'
         ]);
 
         Customer::create([
-            'nama' => 'Elia Rosa',
-            'telepon' => 62893849283,
+            'nama_depan' => 'Elia',
+            'nama_belakang' => 'Rosa',
+            'telepon' => 6285244599384,
+            'email' => 'elbowo@gmail.com',
             'alamat' => 'Semarang'
         ]);
 
         DetailSewa::create([
            'customer_id' => 1,
            'mobil_id' => 4,
-           'tanggal_sewa' => '29-11-2023', 
-           'tanggal_selesai' => '30-11-2023' 
+           'durasi_sewa' => 1,
+           'tanggal_sewa' => date('2023-12-13'), 
+           'tanggal_selesai' => date('2023-12-14'),
+           'harga' => 100000
         ]);
 
         DetailSewa::create([
            'customer_id' => 2,
            'mobil_id' => 1,
-           'tanggal_sewa' => '05-1-2050', 
-           'tanggal_selesai' => '06-1-2050' 
+           'durasi_sewa' => 1,
+           'tanggal_sewa' => date('2023-12-24'), 
+           'tanggal_selesai' => date('2023-12-25'),
+           'harga' => 100000
         ]);
 
     }
