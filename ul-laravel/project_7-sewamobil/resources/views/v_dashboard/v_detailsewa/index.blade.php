@@ -13,10 +13,10 @@
     
     <!-- Page pre-title -->
     <div class="page-pretitle">
-        Overview
+      <a href="/" class="text-secondary">/dashboard</a><a href="/dashboard/detailsewa" class="text-secondary">/detailsewa</a>
       </div>
       <h2 class="page-title">
-        Combo layout
+        Detail Sewa Mobil
       </h2>
 
     </div>
@@ -84,7 +84,7 @@
                   <td>{{ $data->durasi_sewa }} Hari</td>
                   <td>{{ tanggal_ind($data->tanggal_sewa) }}</td>
                   <td>{{ tanggal_ind($data->tanggal_selesai) }}</td>
-                  <td>{{ $data->harga }}</td>
+                  <td>@currency($data->harga)</td>
                   <td class="d-flex">
                     <a href="/dashboard/detailsewa/{{ $data->id }}/edit" class="btn btn-default text-green btn-md shadow rounded-2 p-2" title="update"><i class="fas fa-pen"></i></a>
                     <form action="/dashboard/detailsewa/{{ $data->id }}" method="POST">

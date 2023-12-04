@@ -4,10 +4,10 @@
     
     <!-- Page pre-title -->
     <div class="page-pretitle">
-        Overview
+      <a href="/" class="text-secondary">/dashboard</a><a href="/dashboard/customer" class="text-secondary">/customer</a>
       </div>
       <h2 class="page-title">
-        Combo layout
+        Data Customer
       </h2>
 
     </div>

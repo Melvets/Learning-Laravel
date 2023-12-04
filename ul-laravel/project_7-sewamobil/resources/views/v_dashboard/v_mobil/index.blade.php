@@ -4,10 +4,10 @@
     
     <!-- Page pre-title -->
     <div class="page-pretitle">
-        Overview
+      <a href="/" class="text-secondary">/dashboard</a><a href="/dashboard/mobil" class="text-secondary">/mobil</a>
       </div>
       <h2 class="page-title">
-        Combo layout
+        Data Mobil
       </h2>
 
     </div>
