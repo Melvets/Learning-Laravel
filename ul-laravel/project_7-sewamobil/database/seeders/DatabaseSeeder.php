@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             'model' => 'Camry',
             'tahun_produksi' => 2020,
             'warna' => 'Silver',
-            'nomor_polisi' => 'B 1234 CD'
+            'nomor_polisi' => 'B 1234 CD',
+            'image' => 'car-image/6CtrdogOjbmWo0UtERHP2uuetqOnfderskJH33TE.jpg'
         ]);
 
         Mobil::create([
@@ -36,7 +37,8 @@ class DatabaseSeeder extends Seeder
             'model' => 'Civic',
             'tahun_produksi' => 2019,
             'warna' => 'Blue',
-            'nomor_polisi' => 'D 5678 EF'
+            'nomor_polisi' => 'D 5678 EF',
+            'image' => 'car-image/sTkLtjXpV2mHoOUNwN1uzgGmqbGfgfcsO7fyCl54.jpg'
         ]);
         
         Mobil::create([
@@ -44,7 +46,8 @@ class DatabaseSeeder extends Seeder
             'model' => 'Terios',
             'tahun_produksi' => 2006,
             'warna' => 'White',
-            'nomor_polisi' => 'H 0000 B'
+            'nomor_polisi' => 'H 0000 B',
+            'image' => 'car-image/qjTADVb7jUxYEkRsEUnNNGVCFhIIwiBZdgooymCt.jpg'
         ]);
         
         Mobil::create([
@@ -52,7 +55,8 @@ class DatabaseSeeder extends Seeder
             'model' => '206',
             'tahun_produksi' => 1998,
             'warna' => 'Red',
-            'nomor_polisi' => 'H 7283 AP'
+            'nomor_polisi' => 'H 7283 AP',
+            'image' => 'car-image/MFQDocd73XjLLhKLqURpIjPC8p4Ez5KYDoDh7h1N.jpg'
         ]);
 
         Customer::create([

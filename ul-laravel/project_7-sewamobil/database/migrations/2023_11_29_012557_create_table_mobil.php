@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('tahun_produksi');
             $table->string('warna');
             $table->string('nomor_polisi');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

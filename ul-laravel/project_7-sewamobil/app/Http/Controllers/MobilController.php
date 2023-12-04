@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mobil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MobilController extends Controller
 {
@@ -36,10 +37,15 @@ class MobilController extends Controller
         $validateData = $request->validate([
             'merk' => 'required',
             'model' => 'required',
-            'tahun_produksi' => 'required',
+            'tahun_produksi' => 'required|numeric',
             'warna' => 'required',
-            'nomor_polisi' => 'required'
+            'nomor_polisi' => 'required',
+            'image' => 'required|image|file|max:2048'
         ]);
+
+        if($request->file('image')) {
+            $validateData['image'] = $request->file('image')->store('car-image');
+        }
 
         Mobil::create($validateData);
 
@@ -51,7 +57,10 @@ class MobilController extends Controller
      */
     public function show(Mobil $mobil)
     {
-        //
+        return view('v_dashboard.v_mobil.show', [
+            'dataMobil' => $mobil,
+            'title' => 'Detail' . ' ' . $mobil->merk . ' ' . $mobil->model
+        ]);
     }
 
     /**
@@ -73,10 +82,19 @@ class MobilController extends Controller
         $validateData = $request->validate([
             'merk' => 'required',
             'model' => 'required',
-            'tahun_produksi' => 'required',
+            'tahun_produksi' => 'required|numeric',
             'warna' => 'required',
-            'nomor_polisi' => 'required'
+            'nomor_polisi' => 'required',
+            'image' => 'image|file|max:2048'
         ]);
+
+        if($request->file('image')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+
+            $validateData['image'] = $request->file('image')->store('car-image');
+        }
 
         Mobil::where('id', $mobil->id)->update($validateData);
 
@@ -88,6 +106,10 @@ class MobilController extends Controller
      */
     public function destroy(Mobil $mobil)
     {
+        if($mobil->image) {
+            Storage::delete($mobil->image);
+        }
+
         Mobil::destroy($mobil->id);
         return redirect('/dashboard/mobil');
     }
