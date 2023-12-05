@@ -56,6 +56,7 @@
             <thead>
               <tr>
                 <th class="w-1">No.</th>
+                <th>Image</th>
                 <th>Nama</th>
                 <th>Telepon</th>
                 <th>Email</th>
@@ -69,19 +70,23 @@
               
               <tr>
                   <td><span class="text-secondary">{{ $loop->iteration }}</span></td>
+                  <td><img src="{{ asset('storage/' . $data->image) }}" width="50" class="img-thumbnail"></td>
                   <td>{{ $data->nama_depan }} {{ $data->nama_belakang }}</td>
                   <td>{{ $data->telepon }}</td>
                   <td>{{ $data->email }}</td>
                   <td>{{ $data->alamat }}</td>
-                  <td class="d-flex">
-                    <a href="/dashboard/customer/{{ $data->id }}/edit" class="btn btn-default text-green btn-md shadow rounded-2 p-2" title="update"><i class="fas fa-pen"></i></a>
-                    <form action="/dashboard/customer/{{ $data->id }}" method="POST">
-                      
-                      @method('delete')
-                      @csrf
-                      
-                      <button class="btn btn-default text-red btn-md shadow rounded-2 p-2" onclick="return confirm('Apakah Anda yakin?')"> <i class="fas fa-trash"></i> </button>
-                    </form>
+                  <td>
+                    <div class="d-inline-flex">
+                      <a href="/dashboard/customer/{{ $data->id }}/edit" class="btn btn-default text-green btn-md shadow rounded-2 p-2" title="update"><i class="fas fa-pen"></i></a>
+                      <a href="/dashboard/customer/{{ $data->id }}" style="color: #e0ce00;" class="btn btn-default btn-md shadow rounded-2 p-2" title="update"><i class="fa-solid fa-eye"></i></a>
+                      <form action="/dashboard/customer/{{ $data->id }}" method="POST">
+                        
+                        @method('delete')
+                        @csrf
+                        
+                        <button class="btn btn-default text-red btn-md shadow rounded-2 p-2" onclick="return confirm('Apakah Anda yakin?')"> <i class="fas fa-trash"></i> </button>
+                      </form>
+                    </div>
                   </td>
               </tr>
 

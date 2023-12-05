@@ -23,7 +23,7 @@
         <div class="row row-cards">
             <div class="col-12">
 
-                <form action="/dashboard/customer" method="POST" class="card">
+                <form action="/dashboard/customer" method="POST" class="card" enctype="multipart/form-data">
 
                     @csrf
 
@@ -92,6 +92,19 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label required">Gambar</label>
+                                    <img class="img-preview img-fluid mb-3 col-sm-4">
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()" required>
+                                    @error('image')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror 
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -105,5 +118,21 @@
             </div>
         </div>
     </div>    
+
+    <script>
+        function previewImage() {
+          const image = document.querySelector('#image');
+          const imgPreview = document.querySelector('.img-preview');
+  
+          imgPreview.style.display = 'block';
+  
+          const oFReader = new FileReader();
+          oFReader.readAsDataURL(image.files[0]);
+  
+          oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+          }
+        }
+    </script>
 
 @endsection

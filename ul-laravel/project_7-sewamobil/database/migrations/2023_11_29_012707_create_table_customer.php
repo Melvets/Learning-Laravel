@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('telepon');
             $table->string('email');
             $table->string('alamat');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
