@@ -71,7 +71,7 @@
           </button>
 
           {{-- Logo =========================================================================================================================== --}}
-          <h1 class="navbar-brand mt-2">
+          <h1 class="navbar-brand navbar-brand-autodark mt-2">
             <img src="/img/mobil2.png" alt="FlexDrive" style="width: 5rem;" class="mb-3">
             <div class="d-block">
               <h1 style="font-weight: 1000">Flex<span class="text-danger">Drive</span></h1>

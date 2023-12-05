@@ -25,8 +25,8 @@
 
                 <div class="card mb-3" style="max-width: 1240px;">
                     <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="{{ asset('storage/' . $dataCustomer->image) }}" width="1000" class="img-fluid rounded-start">
+                      <div class="col-md-3">
+                        <img src="{{ asset('storage/' . $dataCustomer->image) }}" width="800" class="img-fluid rounded-start">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">

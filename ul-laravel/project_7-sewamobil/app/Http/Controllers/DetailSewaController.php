@@ -47,9 +47,14 @@ class DetailSewaController extends Controller
         return redirect('/dashboard/detailsewa');
     }
 
-    public function show(DetailSewa $detailSewa)
+    public function show(DetailSewa $detailSewa, $id)
     {
-        //
+        $detailSewa = DetailSewa::find($id);
+
+        return view('v_dashboard.v_detailsewa.show', [
+            'dataDetailSewa' => $detailSewa,
+            'title' => 'Detail' . ' ' . $detailSewa->customer->nama_depan . ' ' . $detailSewa->customer->nama_belakang . ' ' . '(' . $detailSewa->mobil->merk . $detailSewa->mobil->model . ')'
+        ]);
     }
 
     public function edit(DetailSewa $detailSewa, $id)

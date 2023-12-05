@@ -70,6 +70,7 @@
                 <th>Durasi Sewa</th>
                 <th>Tanggal Sewa</th>
                 <th>Tanggal Selesai</th>
+                <th>Harga</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -85,15 +86,18 @@
                   <td>{{ tanggal_ind($data->tanggal_sewa) }}</td>
                   <td>{{ tanggal_ind($data->tanggal_selesai) }}</td>
                   <td>@currency($data->harga)</td>
-                  <td class="d-flex">
-                    <a href="/dashboard/detailsewa/{{ $data->id }}/edit" class="btn btn-default text-green btn-md shadow rounded-2 p-2" title="update"><i class="fas fa-pen"></i></a>
-                    <form action="/dashboard/detailsewa/{{ $data->id }}" method="POST">
-                      
-                      @method('delete')
-                      @csrf
-                      
-                      <button class="btn btn-default text-red btn-md shadow rounded-2 p-2" onclick="return confirm('Apakah Anda yakin?')"> <i class="fas fa-trash"></i> </button>
-                    </form>
+                  <td>
+                    <div class="d-inline-flex">
+                      <a href="/dashboard/detailsewa/{{ $data->id }}/edit" class="btn btn-default text-green btn-md shadow rounded-2 p-2" title="update"><i class="fas fa-pen"></i></a>
+                      <a href="/dashboard/detailsewa/{{ $data->id }}" style="color: #e0ce00;" class="btn btn-default btn-md shadow rounded-2 p-2" title="update"><i class="fa-solid fa-eye"></i></a>
+                      <form action="/dashboard/detailsewa/{{ $data->id }}" method="POST">
+                        
+                        @method('delete')
+                        @csrf
+                        
+                        <button class="btn btn-default text-red btn-md shadow rounded-2 p-2" onclick="return confirm('Apakah Anda yakin?')"> <i class="fas fa-trash"></i> </button>
+                      </form>
+                    </div>
                   </td>
               </tr>
 
