@@ -13,8 +13,19 @@ class MobilController extends Controller
      */
     public function index()
     {
+        $query = Mobil::latest();
+        $count = Mobil::all()->count();
+
+        if(request('search')) {
+            $query->where('merk', 'like', '%' . request('search') . '%')
+                    ->orWhere('model', 'like', '%' . request('search') . '%');
+        }
+
+        $dataMobil = $query->paginate(5);
+
         return view('v_dashboard.v_mobil.index', [
-            'dataMobil' => Mobil::all(),
+            'dataMobil' => $dataMobil,
+            'jumlahMobil' => $count,
             'title' => 'Mobil'
         ]);
     }

@@ -11,8 +11,20 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        $query = Customer::latest();
+        $count = Customer::all()->count();
+
+        if(request('search')) {
+            $query->where('nama_depan', 'like', '%' . request('search') . '%')
+                    ->orWhere('nama_belakang', 'like', '%' . request('search') . '%')
+                    ->orWhere('alamat', 'like', '%' . request('search') . '%');
+        }
+
+        $dataCustomer = $query->paginate(5);
+
         return view('v_dashboard.v_customer.index', [
-            'dataCustomer' => Customer::all(),
+            'dataCustomer' => $dataCustomer,
+            'jumlahCustomer' => $count,
             'title' => 'Customer'
         ]);
     }
@@ -34,7 +46,7 @@ class CustomerController extends Controller
             'telepon' => ['required', 'regex:/^(\+62|62|0)8[1-9][0-9]{6,9}$/'],
             // 'telepon' => 'required|regex:/^(\+62|62|0)8[1-9][0-9]{6,9}$/|min:12',
             'email' => 'required|email:dns',
-            'alamat' => 'required|min:5|max:255',
+            'alamat' => 'required|max:255',
             'image' => 'image|file|max:1024',
         ]);
         // regex:^(\+62|62|0)8[1-9][0-9]{6,9}$
@@ -79,7 +91,7 @@ class CustomerController extends Controller
             'nama_belakang' => 'required|max:255',
             'telepon' => ['required', 'regex:/^(\+62|62|0)8[1-9][0-9]{6,9}$/'],
             'email' => 'required|email:dns',
-            'alamat' => 'required|min:5|max:255',
+            'alamat' => 'required|max:255',
             'image' => 'image|file|max:1024',
         ]);
 

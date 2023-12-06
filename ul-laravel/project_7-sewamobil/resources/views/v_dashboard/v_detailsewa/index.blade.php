@@ -1,10 +1,10 @@
 @php
-  function tanggal_ind($tanggal) {
-    $pisah   = explode('-',$tanggal);
-    $larik   = array($pisah[2],$pisah[1],$pisah[0]);
-    $satukan = implode('-',$larik);
-    return $satukan;
-  } 
+  // function tanggal_ind($tanggal) {
+  //   $pisah   = explode('-',$tanggal);
+  //   $larik   = array($pisah[2],$pisah[1],$pisah[0]);
+  //   $satukan = implode('-',$larik);
+  //   return $satukan;
+  // } 
 @endphp
 
 @extends('v_dashboard.layouts.main')
@@ -48,16 +48,11 @@
             <div class="text-secondary">
               Show
               <div class="mx-2 d-inline-block">
-                <input type="text" class="form-control form-control-sm" value="8" size="3" aria-label="Invoices count">
+                <input type="text" class="form-control form-control-sm" value="{{ $jumlahDetailSewa }}" size="3" aria-label="Invoices count">
               </div>
               entries
             </div>
-            <div class="ms-auto text-secondary">
-              Search:
-              <div class="ms-2 d-inline-block">
-                <input type="text" class="form-control form-control-sm" aria-label="Search invoice">
-              </div>
-            </div>
+
           </div>
         </div>
         <div class="table-responsive">
@@ -74,6 +69,9 @@
                 <th>Action</th>
               </tr>
             </thead>
+
+            @if($dataDetailSewa->count())
+
             <tbody>
 
             @foreach ($dataDetailSewa as $data)
@@ -83,8 +81,8 @@
                   <td>{{ $data->customer->nama_depan }} {{ $data->customer->nama_belakang }}</td>
                   <td>{{ $data->mobil->merk }} {{ $data->mobil->model }}, {{ $data->mobil->tahun_produksi }}</td>
                   <td>{{ $data->durasi_sewa }} Hari</td>
-                  <td>{{ tanggal_ind($data->tanggal_sewa) }}</td>
-                  <td>{{ tanggal_ind($data->tanggal_selesai) }}</td>
+                  <td>{{ \Carbon\Carbon::parse($data->tanggal_sewa)->format('d-m-Y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($data->tanggal_selesai)->format('d-m-Y') }}</td>
                   <td>@currency($data->harga)</td>
                   <td>
                     <div class="d-inline-flex">
@@ -104,30 +102,19 @@
             @endforeach
 
             </tbody>
+
+            @else
+            <tr>
+              <td colspan="8">
+                <p class="text-danger text-center fs-4 fw-bold m-4">No data found!</p>    
+              </td>
+            </tr>
+            @endif
+
           </table>
         </div>
-        <div class="card-footer d-flex align-items-center">
-          <p class="m-0 text-secondary">Showing <span>1</span> to <span>8</span> of <span>16</span> entries</p>
-          <ul class="pagination m-0 ms-auto">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
-                prev
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">
-                next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-              </a>
-            </li>
-          </ul>
+        <div class="card-footer d-flex align-items-center justify-content-end">
+          {{ $dataDetailSewa->links() }}
         </div>
       </div>
     </div>

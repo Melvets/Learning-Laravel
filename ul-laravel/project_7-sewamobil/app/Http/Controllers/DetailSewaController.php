@@ -12,8 +12,14 @@ class DetailSewaController extends Controller
 {
     public function index()
     {
+        $query = DetailSewa::latest();
+        $count = DetailSewa::all()->count();
+
+        $dataDetailSewa = $query->paginate(5);
+
         return view('v_dashboard.v_detailsewa.index', [
-            'dataDetailSewa' => DetailSewa::all(),
+            'dataDetailSewa' => $dataDetailSewa,
+            'jumlahDetailSewa' => $count,
             'title' => 'Detail Sewa'
         ]);
     }
@@ -93,4 +99,15 @@ class DetailSewaController extends Controller
 
         return redirect('/dashboard/detailsewa');
     }
+
+    public function tanggal_ind($tanggal) {
+        $pisah   = explode('-',$tanggal);
+        $larik   = array($pisah[2],$pisah[1],$pisah[0]);
+        $satukan = implode('-',$larik);
+        // return $satukan;
+
+        return view('v_dashboard.v_detailsewa.index', [
+            'tanggal_ind' => $satukan
+        ]);
+    } 
 }
